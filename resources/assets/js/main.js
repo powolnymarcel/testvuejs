@@ -6,6 +6,7 @@ var TodoItems = Vue.extend({
 
     created(){
         this.$http.get('api/v1/todos').then((response)=>{
+            console.log(response);
             if(response.status == 200){
                 this.todos = response.data;
             }
@@ -44,9 +45,9 @@ var TodoAddForm = Vue.extend({
             todo: {id: null, title: '', completed: false}
         }
     },
+
     methods: {
         addTodo() {
-           
             if(this.todo.title =='')
             {return false;}
             this.newtodo = this.todo;
@@ -61,10 +62,13 @@ Vue.component('todo-add-form', TodoAddForm);
 new Vue({
     //On selectionne le scope dans lequem vue sera actif
     el: '#vue-app',
+
+
     data: {
         todos: [],
         newTodo: {}
     },
+
     watch: {
         newTodo(newval, oldval) {
             this.todos.push({

@@ -30,3 +30,46 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::group(['prefix'=>'api/v1'],function(){
+   Route::get('todos',function(){
+       return App\Todo::all();
+   });
+
+    //Route::get('todos',function(){
+    //    $todos= App\Todo::all();
+    //    return Response::json(array('todos' => $todos),200);
+    //});
+
+
+    Route::post('todos',function(){
+        return App\Todo::all();
+    });
+});
+
+
+
+//TEST AVEC PROTECTION DE LA ROUTE
+//Route::group(['middleware'=>'auth'],function(){
+//    Route::group(['prefix'=>'api/v1'],function(){
+//        Route::get('todos',function(){
+//            return App\Todo::all();
+//        });
+//
+//        //Route::get('todos',function(){
+//        //    $todos= App\Todo::all();
+//        //    return Response::json(array('todos' => $todos),200);
+//        //});
+//    });
+//});
+
+
+
+
+
+
+
+
+
+
